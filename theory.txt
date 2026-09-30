@@ -100,3 +100,180 @@ Pass function A into function B as an argument, Function B receives function A, 
 
 
 
+JavaScript Core Mastery: Control Flow, Functions, and Scope
+This question set is designed to evaluate a student's grasp of JavaScript fundamentals, focusing on the underlying mechanics and practical implementation.
+Part 1: Control Flow (If-Else & Logical Operators)
+Theoretical Mastery
+
+Truthy and Falsy: Explain the concept of "truthy" and "falsy" values in JavaScript. List at least five values that evaluate to false in a boolean context.
+In JavaScript, a truthy value is a value that is treated as true when used in a Boolean context, such as an if statement.
+A falsy value is a value that is treated as false when used in a Boolean context.
+The main falsy values in JavaScript are:
+false
+0
+-0
+""
+null
+undefined
+NaN
+
+SHORT-CIRCUIT LOGIC
+
+Question:
+Describe how the && (AND) and || (OR) operators use short-circuit evaluation. How can this be used to provide default values for variables?
+The && and || operators use short-circuit evaluation, which means JavaScript stops evaluating an expression as soon as it knows the final result.
+
+The && operator means AND. Both conditions must be truthy for the entire expression to be truthy.
+You can use the || operator to provide a default value when a variable is falsy.
+const name = "";
+const username = name || "Guest";
+
+console.log(username); Since name is an empty string (""), which is falsy, JavaScript uses "Guest" as the default value.
+
+THE STRICT EQUALITY OPERATOR
+
+Question:
+Why is it generally recommended to use === instead of == in JavaScript if statements? Explain the role of type coercion in your answer.
+It is generally recommended to use === because it checks both the value and the data type without automatically converting one type into another.
+
+The == operator is called loose equality. It allows type coercion, which means JavaScript may automatically convert one value's type before comparing the values.
+
+Condition Analysis:
+
+const x = "5";
+const y = 5;
+
+if (x == y && typeof x === "string") {
+    console.log("Result A");
+} else if (x === y || x > 0) {
+    console.log("Result B");
+} else {
+    console.log("Result C");
+}
+
+Determine which block executes and justify your answer based on JavaScript's type conversion rules.
+The first block executes and eturns Result A . ==allows type coercion hence JS is able to convert "5" to 5 returning true and then "5" is a string making both conditions true.
+
+4. Nested Logic Transformation
+
+A nested if...else can be rewritten using a ternary operator when there are only a few simple conditions.
+
+Using if...else:
+
+const age = 20;
+
+if (age >= 18) {
+    console.log("Adult");
+} else {
+    console.log("Minor");
+}
+
+Using a ternary operator:
+
+const age = 20;
+
+const result = age >= 18 ? "Adult" : "Minor";
+console.log(result);
+
+The ternary operator is preferable when there is a simple condition with two possible outcomes. It makes short decisions more concise.
+
+A switch statement is preferable when you need to compare one value against several possible specific values.
+
+const day = 2;
+
+switch (day) {
+    case 1:
+        console.log("Monday");
+        break;
+    case 2:
+        console.log("Tuesday");
+        break;
+    case 3:
+        console.log("Wednesday");
+        break;
+    default:
+        console.log("Invalid day");
+}
+
+Part 4: Scopes and Variable Lifetime
+17. Global vs. Local
+
+The Global Object is an object that provides variables and functions that are available throughout a JavaScript program.
+
+In a browser, the global object is called window. In Node.js, it is commonly accessed through global.
+
+For example:
+
+var name = "Honorine";
+
+console.log(window.name);
+
+A variable declared in the global scope can be accessed from different parts of the program.
+
+Risks of polluting the global scope:
+
+Global variables can accidentally be changed by different parts of the program.
+Different variables can have the same name and cause conflicts.
+It can make code harder to understand and maintain.
+It can make debugging more difficult.
+
+Therefore, it is generally better to keep variables inside functions or blocks when they are not needed globally.
+
+
+Block Scope vs. Function Scope
+
+The main difference is how var, let, and const behave inside blocks such as if and for.
+
+var is function-scoped, meaning it is available throughout the function where it was declared. It does not respect block scope.
+
+ES6 introduced let and const, which are block-scoped. This allows variables declared inside if statements and for loops to remain limited to those blocks, reducing accidental access and variable conflicts.
+
+
+Shadowing
+
+Variable shadowing happens when a variable inside a local scope has the same name as a variable in an outer scope, such as the global scope.
+When this happens, JavaScript uses the variable from the closest/current scope first.JavaScript looks for name starting from where console.log(name) is located.JavaScript searches for a variable from the innermost scope outward. The closest matching variable is the one it uses.
+
+Scope Tracing:
+
+let a = 10;
+function outer() {
+    let b = 20;
+    if (true) {
+        let a = 30;
+        var c = 40;
+        console.log(a + b); 
+    }
+    console.log(a);
+    console.log(c);
+}
+outer();
+
+Predict the three values printed to the console. Explain why the second console.log(a) prints the value it does, referencing block-scoping rules.
+answer would be JS uses the variable from the closest or current sope first therefore console.log(a+b) a=30 and b=20 hence 50 then console.log(a) would be 10 since after the if block ends, the let a = 30 no longer exists, because let is block-scoped.
+JavaScript then looks for another a and lastly console.log(c) would be 40  
+
+Temporal Dead Zone: Explain what happens if you try to console.log a let variable before it is declared, compared to a var variable.
+What happens is you get a ReferrenceError. Because the variable exists in the scope, but it cannot be accessed until JavaScript reaches its declaration.With var it does not produce an eror. This is because var declarations are hoisted and initialized with undefined before the code runs.For let to work you need to declare the variable before you try to use it.
+
+Part 2: Iteration (For & While Loops)
+Theoretical Mastery
+The Loop Lifecycle: Identify the three expressions inside a for loop header: for(initialization; condition; final-expression). At exactly what point in the iteration cycle does the final-expression execute?
+1. Initialization
+This happens once, at the beginning.Usually, we create the counter here:
+
+2. Condition
+JavaScript checks the condition before every iteration.
+If it is true, the loop runs.
+If it is false, the loop stops.
+
+3. Final-expression
+The final-expression usually changes the counter.
+It executes after the code inside the loop has finished, but before the next condition is checked.
+
+Termination Hazards: What is a "loop invariant," and how does a programmer ensure a while loop eventually reaches its termination condition?
+A loop invariant is a condition or value that remains consistent during each iteration of a loop and helps us reason about how the loop works.
+for a while loop, the programmer must make sure that something changes on each iteration so that the loop eventually becomes false.Without doing this the loop becomes an infinite loop.
+
+Break vs. Continue: Define the difference between the break and continue keywords. How do they affect the "counter" or "iterator" in a loop?
+Break and continue both change the normal flow of a loop.Break completely stops the loop so the counter stops being updatedwhile continue does not instead it skips the rest of the current iteration and moves to the next iteration.
