@@ -1,3 +1,105 @@
+Part 1: Discussion Questions
+
+1. Explain the differences between var, let, and const in JavaScript regarding variable scope, hoisting, and reassignment.
+var; serves as placeholders for holding datatypes
+let; one can reassign variable name
+const; one cannot reassign variable name
+scope; accessibility of variables and functionsin different parts of your considered
+hoisting; JavaScript behavior where the engine processes declarations before executing the code effectively moving them to the top of the scope.
+
+In context to scope:
+var -> function-scoped; variables declared inside a function and confined to that function
+let -> bock-scoped; variables declared inside a block({})
+const -> bock-scoped; variables declared inside a block({})
+
+In context to hoisting:
+var ->declarations are hoisted and initialized to undefined
+let ->declarations are hoisted but stay in the Temporary Dead Zone(TDZ) until the line where they are declared
+const ->declarations are hoisted but stay in the Temporary Dead Zone(TDZ) until the line where they are declared
+
+In context to reassignment:
+var ->can be reassigned
+let ->can be reassigned
+const ->cannot be reassigned
+
+2. What are the primitive data types available in JavaScript, and how do they fundamentally differ from reference types like arrays and objects?
+Primitive data types: simplest data types or lowest-level processing instruction that cannot be broken down further
+Examples: Numbers, String, Boolean, Bigint, Null, and Undefined values
+They are immutable(cannot be changed)
+Stored as actual values
+
+Reference Data Types: data types that store a memory address pointing to the actual data rather than holding the value directly
+Examples: Arrays, Classes / Object, String, and Interfaces / function
+They are mutable
+Stored as memory address
+
+3. Discuss the difference between loose equality (==) and strict equality (===). Why is strict equality generally considered a best practice?
+loose equality: returns true if two values are equal and of the same data type, but also returns true if it can perform a type conversion from string to number
+Compares values after performing type coercion  
+
+strict equality:checks whether two values are equal, returning a Boolean
+The operator only returns true if the data types also matches --> they check both value and type and are more predictable
+No converstions occur
+
+4. How do logical operators (&&, ||, ---) evaluate expressions, and what is meant by "short-circuit evaluation"?
+&&: (and operator), takes two expressions, and all exepressions must be true
+if the first expressions is false, && returns that value and exits even without ever checking the second expressions
+
+||: (or operator), takes two expressions, and only one can be true
+returns the first true value it finds, or the last value if all are false.
+===: (strict equality), checks whether two values are equal, returning a Boolean
+The operator only returns true if the data types also matches --> they check both value and type and are more predictable
+No converstions occur 
+
+5. Describe how a conditional switch statement can be used as an alternative to a long chain of if...else if statements, and explain the role of the default keyword.
+A switch statement is cleaner and more readable when you need to compare one expression against many possible values.
+
+Default keyword; it acts like the final else
+It runs when none of the case values match the expression
+It is optional but recommended for handling unexpected values
+
+Part 3: Functions (Anatomy & Execution)
+
+Theoretical Mastery
+1. Declaration vs. Expression: Explain the difference between a Function Declaration and a Function Expression. Specifically, how does "Hoisting" affect where these can be called in a script?
+Declarations:introduces a new identifier to the scope
+fully hoisted
+
+Expressions:a piece of code that the browser can evalute to produce a 
+only the variable in expressions is hoisted
+
+2. Parameters and Rest/Spread: Define the arguments object vs. the "Rest Parameter" (...args) syntax. Which is preferred in modern JavaScript and why?
+arguments object: has array-like object
+arrow functions are not available, they inherit arguments from the enclosing non-arrow function scope
+captures all arguments passed to the function
+
+the "Rest Parameter:has real array
+arrow functions are fully supported
+can capture only the remaining arguments
+
+the Rest Parameter is the one preferred this is because it is a real array, has clarity with named parametrs -->allows you to explicitly separate named variables from the rest of the incoming data
+
+3. The Return Statement: What happens to a function's execution if a return keyword is used without a value? What value does the function call evaluate to in that instance?
+The function execution immediately stops and exits the function early when we use a return keyword without a value
+It returns undefined
+
+Technical Application
+1. Arrow Function Anatomy: Convert the following standard function into a concise arrow function. Identify which parts of the anatomy (like the function keyword or curly braces) can be omitted:
+
+function multiply(a, b) {
+    return a * b;
+}
+
+const multiply = (a, b) =>a * b
+
+2. Higher-Order Concepts: If a function A is passed as an argument to function B, what is function A commonly called? Describe the flow of data between the two.
+Function A: Callback Function
+Function B: High-Order Function
+
+Pass function A into function B as an argument, Function B receives function A, At some point, function B calls (executes) function A, Function A may receive data from function B when it is called, Function A can return a value back to function B.
+
+
+
 JavaScript Core Mastery: Control Flow, Functions, and Scope
 This question set is designed to evaluate a student's grasp of JavaScript fundamentals, focusing on the underlying mechanics and practical implementation.
 Part 1: Control Flow (If-Else & Logical Operators)
